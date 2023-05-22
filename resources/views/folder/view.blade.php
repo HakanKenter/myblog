@@ -1,1 +1,5 @@
-test 2
+@extends('base')
+
+@section('content')
+    Mon Contenu View
+@stop

@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UniqueActionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,39 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ MainController::class, 'home']);
 
-Route::get('/articles/{id}/comments/{author?}', function ($id, $author = 'Nicolas') {
-    return $id . " comment id : " . $author;
-});
 
-Route::prefix('admin')->group(function() {
-	
-	Route::get('users', function() {
-		return response()->json([
-            'name' => 'Hakan',
-            'age' => 25
-        ]);
-	});
-
-	Route::get('articles', function() {
-		return 'Ma articles list';
-	});	
-
-	Route::get('categories', function() {
-		return 'Ma categories list';
-	});	
-
-});
-
-Route::get('/test/{id}', function($id) {
-    return view('test', [
-        'id' => $id
-    ]);
-});
-
-Route::get('/view', function() {
-    return view('folder.view');
-});
+Route::get('/articles', [ MainController::class, 'index' ]);
